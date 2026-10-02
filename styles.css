@@ -921,3 +921,49 @@ section { padding: 38px 0; border-bottom: 1px solid var(--ink); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }
 }
+
+/* Compact, dependency-free language controls. No remote fonts or animation. */
+.language-switch {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: -6px 0 10px;
+}
+.language-switch button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: .8rem;
+  cursor: pointer;
+}
+.language-switch button[aria-pressed="true"] {
+  border-color: var(--wine);
+  color: var(--wine);
+  font-weight: 700;
+}
+.language-switch button:focus-visible { outline: 2px solid var(--wine); outline-offset: 2px; }
+.bottom-nav > [hidden] { display: none; }
+.restricted-content[hidden] { display: none; }
+.bottom-nav--public { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+html:lang(en) body { hyphens: auto; }
+html:lang(ja) body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; }
+html:lang(ja) :is(h1, h2, h3, h4, p, li) { word-break: normal; line-break: strict; }
+html:not(:lang(ko)) :is(.profile__hero, .record-grid, .profile-columns, .affiliate-columns, .history__columns) > * { min-width: 0; }
+html:not(:lang(ko)) .kicker { flex-wrap: wrap; }
+html:not(:lang(ko)) .timeline li { grid-template-columns: minmax(0, 100px) minmax(0, 1fr); }
+html:not(:lang(ko)) .affiliate-list > div { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
+html:not(:lang(ko)) .family-node small { white-space: normal; }
+html:lang(en) .fact-list li { grid-template-columns: 90px minmax(0, 1fr); }
+html:lang(en) .private-index div { grid-template-columns: 100px minmax(0, 1fr); }
+html:lang(en) :is(.lead-story h1, .people-lead h1) {
+  max-width: none;
+  font-size: clamp(2.1rem, 7.5vw, 4.1rem);
+  line-height: 1.12;
+  hyphens: none;
+}
+html:lang(en) .profile__identity h2 { font-size: clamp(2rem, 7vw, 3rem); }
